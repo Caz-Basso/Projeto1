@@ -1,4 +1,11 @@
 const express = require('express')
+const router = express.Router();
+
+const userRoutes = require ("./routes/userRoutes");
+router.use("/users", userRoutes);
+
+module.exports = router;
+
 const app = express();
 const cors = require("cors");
 
@@ -7,7 +14,7 @@ app.use(cors());
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 
-const routes = require('./routes')
+const routes = require('.')
 
 const hostname = '127.0.0.1';
 const PORT = 3000;
