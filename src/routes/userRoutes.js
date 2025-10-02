@@ -1,30 +1,28 @@
-const express = require('express')
-const router = express.Router()
-const { v4: uuidv4 } = require('uuid')
+const express = require('express');
+const router = express.Router();
+const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
+let userDB = loadUser();
 
-var userDB = loadUser();
-
-
-// Função carrega usuarios a partir do arquivo JSON
+// Função carrega usuários a partir do arquivo JSON
 function loadUser() {
-    try {
-      return JSON.parse(fs.readFileSync('./src/db/user.json', 'utf8'));
-    } catch (err) {
-      return [];
-    }
+  try {
+    return JSON.parse(fs.readFileSync('./src/db/user.json', 'utf8'));
+  } catch (err) {
+    return [];
   }
-// Função para salvar os usuarios no arquivo JSON
-function saveUser() {
-    try {
-      fs.writeFileSync('./src/db/user.json', JSON.stringify(userDB, null, 2));
-      return "Saved"
-    } catch (err) {
-      return "Not saved";
-    }
-  }
+}
 
+// Função para salvar os usuários no arquivo JSON
+function saveUser() {
+  try {
+    fs.writeFileSync('./src/db/user.json', JSON.stringify(userDB, null, 2));
+    return "Saved";
+  } catch (err) {
+    return "Not saved";
+  }
+}
 
 /**
  * @swagger
@@ -43,26 +41,26 @@ function saveUser() {
  *       properties:
  *         id:
  *           type: string
- *           description: O id é gerado automáticamente pelo cadastro do usuario
+ *           description: O id é gerado automaticamente pelo cadastro do usuário
  *         name:
  *           type: string
- *           description: Nome do usuario
+ *           description: Nome do usuário
  *         contact_email:
  *           type: string
- *           description: Email do usuario
+ *           description: Email do usuário
  *         user:
  *           type: string
- *           description: Nome de identificação do usuario
+ *           description: Nome de identificação do usuário
  *         pwd:
  *           type: string
- *           description: Senha gerada automáticamente no cadastro do usuario
+ *           description: Senha do usuário
  *         level:
  *           type: string
- *           description: Nivel de autoridade do usuario
+ *           description: Nível de autoridade do usuário
  *         status:
  *           type: string
- *           description: Identifica se o usuario ainda é ativo no sistema ou não
-  *       example:
+ *           description: Identifica se o usuário está ativo no sistema
+ *       example:
  *         id: afr0b6d0-a69b-4938-b116-f2e8e0d08542
  *         name: Camila Basso
  *         contact_email: camila.basso@unesc.net
@@ -72,26 +70,22 @@ function saveUser() {
  *         status: on
  */
 
-
- /**
-  * @swagger
-  * tags:
-  *   name: Usuarios
-  *   description:
-  *     API de Cadastro de Usuario
-  *     **Por Camila Basso**
-  */
-
-
- /**
+/**
  * @swagger
- * /students:
+ * tags:
+ *   name: Usuarios
+ *   description: API de Cadastro de Usuário
+ */
+
+/**
+ * @swagger
+ * /users:
  *   get:
- *     summary: Retorna uma lista de todos os usuarios
+ *     summary: Retorna uma lista de todos os usuários
  *     tags: [Usuarios]
  *     responses:
  *       200:
- *         description: A lista de usuarios
+ *         description: A lista de usuários
  *         content:
  *           application/json:
  *             schema:
@@ -100,58 +94,82 @@ function saveUser() {
  *                 $ref: '#/components/schemas/User'
  */
 
-
-// GET "/students"
-router.get('/', (req, res) =>{
-    console.log("getroute");
-    userDB = loadUser();
-    res.json(userDB);
-})
-
+router.get('/', (req, res) => {
+  userDB = loadUser();
+  res.json(userDB);
+});
 
 /**
  * @swagger
- * /students/{id}:
+ * /users/{id}:
  *   get:
- *     summary: Retorna um estudante pelo ID
- *     tags: [Students]
+ *     summary: Retorna um usuário pelo ID
+ *     tags: [Usuarios]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: ID do estudante
+ *         description: ID do usuário
  *     responses:
  *       200:
- *         description: Um estudante pelo ID
- *         contens:
+ *         description: Usuário encontrado
+ *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Student'
+ *               $ref: '#/components/schemas/User'
  *       404:
- *         description: Estudante não encontrado
+ *         description: Usuário não encontrado
  */
 
-
-// GET "/students/1"
 router.get('/:id', (req, res) => {
-    const id = req.params.id
-    userDB = loadUser();
-    var user = userDB.find((user) => user.id === id )
-    if(!user) return res.status(404).json({
-        "erro": "Usuario não encontrado!"
-    })
-    res.json(user)
-})
-
+  const user = userDB.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ erro: "Usuário não encontrado!" });
+  res.json(user);
+});
 
 /**
  * @swagger
  * /users:
  *   post:
- *     summary: Cria um novo usuario
- *     tags: [Students]
+ *     summary: Cria um novo usuário
+ *     tags: [Usuarios]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: Usuário criado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+
+router.post('/', (req, res) => {
+  const newUser = { id: uuidv4(), ...req.body };
+  userDB.push(newUser);
+  saveUser();
+  res.status(201).json(newUser);
+});
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   put:
+ *     summary: Atualiza um usuário pelo ID
+ *     tags: [Usuarios]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
  *     requestBody:
  *       required: true
  *       content:
@@ -160,117 +178,51 @@ router.get('/:id', (req, res) => {
  *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
- *         description: O Usuario foi criado com sucesso
+ *         description: Usuário atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: Usuário não encontrado
  */
 
-
-// POST "/user" BODY { "nome": "Claudio"}
-router.post('/', (req, res) => {
-    const newUser = {
-        id: uuidv4(),
-        ...req.body
-    }
-    console.log(newUser);
-    userDB = loadUser();
-    userDB.push(newUser)
-    let result = saveUser();
-    console.log(result);
-    return res.json(newUser)
-})
-
-
-/**
- * @swagger
- * /users/{id}:
- *  put:
- *    summary: Atualiza um usuario pelo ID
- *    tags: [Users]
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: ID do usuario
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $ref: '#/components/schemas/User'
- *    responses:
- *      200:
- *        description: O usuario foi atualizado com sucesso
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/User'
- *      404:
- *        description: User não encontrado
- */
-
-
-// PUT "/users/1" BODY { "nome": "Claudia"}
 router.put('/:id', (req, res) => {
-    const id = req.params.id
-    const newUser = req.body
-    userDB = loadUser();
-    const currentUser = userDB.find((user) => user.id === id )
-    const currentIndex = userDB.findIndex((user) => user.id === id )
-    if(!currentUser)
-        return res.status(404).json({
-        "erro": "Usuario não encontrado!"
-    })
-    userDB[currentIndex] = newUser
-    let result = saveUser();
-    console.log(result);
-    return res.json(newUser)
-})
+  const index = userDB.findIndex(u => u.id === req.params.id);
+  if (index === -1) return res.status(404).json({ erro: "Usuário não encontrado!" });
 
+  userDB[index] = { ...userDB[index], ...req.body }; // preserva id
+  saveUser();
+  res.json(userDB[index]);
+});
 
 /**
  * @swagger
  * /users/{id}:
  *   delete:
- *     summary: Remove um usuario pelo ID
- *     tags: [User]
+ *     summary: Remove um usuário pelo ID
+ *     tags: [Usuarios]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: ID do usuario
+ *         description: ID do usuário
  *     responses:
  *       200:
- *         description: O usuario foi removido com sucesso
- *         content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/User'
+ *         description: Usuário removido com sucesso
  *       404:
- *         description: Usuario não encontrado
+ *         description: Usuário não encontrado
  */
 
-
-// DELETE "/users/1"
 router.delete('/:id', (req, res) => {
-    const id = req.params.id
-    userDB = loadUser();
-    const currentUser = userDB.find((user) => user.id === id )
-    const currentIndex = userDB.findIndex((user) => user.id === id )
-    if(!currentUser) return res.status(404).json({
-        "erro": "Usuario não encontrado!"
-    })
-    var deletado = userDB.splice(currentIndex, 1)
-    let result = saveUser();
-    console.log(result);
-    res.json(deletado)
-})
+  const index = userDB.findIndex(u => u.id === req.params.id);
+  if (index === -1) return res.status(404).json({ erro: "Usuário não encontrado!" });
 
+  const deleted = userDB.splice(index, 1);
+  saveUser();
+  res.json(deleted[0]);
+});
 
-module.exports = router
+module.exports = router;

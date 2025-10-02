@@ -3,9 +3,7 @@ const router = express.Router()
 const { v4: uuidv4 } = require('uuid')
 const fs = require('fs');
 
-
 var productDB = loadProduct();
-
 
 // Função carrega produtos a partir do arquivo JSON
 function loadProduct() {
@@ -30,12 +28,12 @@ function saveProduct() {
  * @swagger
  * components:
  *   schemas:
- *     User:
+ *     Product:
  *       type: object
  *       required:
  *         - id
  *         - name
- *         - descripition
+ *         - description
  *         - price
  *         - stock_quantity
  *         - supplier_id
@@ -47,7 +45,7 @@ function saveProduct() {
  *         name:
  *           type: string
  *           description: Nome do produto
- *         descripition:
+ *         description:
  *           type: string
  *           description: Descrição do produto
  *         price:
@@ -67,7 +65,7 @@ function saveProduct() {
  *         name: Martelo
  *         description: Martelo com cabo de madeira
  *         price: 20
- *         stock_quantity:15
+ *         stock_quantity: 15
  *         supplier_id: 7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd
  *         status: on
  */
@@ -76,7 +74,7 @@ function saveProduct() {
  /**
   * @swagger
   * tags:
-  *   name: Usuarios
+  *   name: Produtos
   *   description:
   *     API de Cadastro de Produto
   *     **Por Camila Basso**
@@ -85,7 +83,7 @@ function saveProduct() {
 
  /**
  * @swagger
- * /students:
+ * /product:
  *   get:
  *     summary: Retorna uma lista de todos os produtos
  *     tags: [Produtos]
@@ -101,10 +99,10 @@ function saveProduct() {
  */
 
 
-// GET "/products"
+// GET "/product"
 router.get('/', (req, res) =>{
     console.log("getroute");
-    productDB = loadUser();
+    productDB = loadProduct();
     res.json(productDB);
 })
 
@@ -114,7 +112,7 @@ router.get('/', (req, res) =>{
  * /product/{id}:
  *   get:
  *     summary: Retorna um produto pelo ID
- *     tags: [Products]
+ *     tags: [Produtos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -134,12 +132,12 @@ router.get('/', (req, res) =>{
  */
 
 
-// GET "/products/1"
+// GET "/product/1"
 router.get('/:id', (req, res) => {
     const id = req.params.id
     productDB = loadProduct();
     var product = productDB.find((product) => product.id === id )
-    if(!user) return res.status(404).json({
+    if(!product) return res.status(404).json({
         "erro": "Produto não encontrado!"
     })
     res.json(product)
@@ -148,10 +146,10 @@ router.get('/:id', (req, res) => {
 
 /**
  * @swagger
- * /users:
+ * /product:
  *   post:
  *     summary: Cria um novo produto
- *     tags: [Product]
+ *     tags: [Produtos]
  *     requestBody:
  *       required: true
  *       content:
@@ -185,10 +183,10 @@ router.post('/', (req, res) => {
 
 /**
  * @swagger
- * /products/{id}:
+ * /product/{id}:
  *  put:
  *    summary: Atualiza um produto pelo ID
- *    tags: [Products]
+ *    tags: [Produtos]
  *    parameters:
  *      - in: path
  *        name: id
@@ -234,10 +232,10 @@ router.put('/:id', (req, res) => {
 
 /**
  * @swagger
- * /users/{id}:
+ * /product/{id}:
  *   delete:
  *     summary: Remove um produto pelo ID
- *     tags: [Product]
+ *     tags: [Produtos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -257,7 +255,7 @@ router.put('/:id', (req, res) => {
  */
 
 
-// DELETE "/products/1"
+// DELETE "/product/1"
 router.delete('/:id', (req, res) => {
     const id = req.params.id
     productDB = loadProduct();
