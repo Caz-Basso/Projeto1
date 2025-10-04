@@ -1,16 +1,16 @@
 const express = require('express')
-const app = express();
 const cors = require("cors");
-
-app.use(cors());
-
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 
 const routes = require('./src/routes')
 
+const app = express();
 const hostname = '127.0.0.1';
 const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
 
 const options ={
     definition: {
@@ -45,14 +45,8 @@ const specs = swaggerJsDoc(options);
 app.use('/api', routes)
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-
-const arrResponse = [
-    { name:"Diego", company: "Hashtag Programação"},
-    { name: "Alon", company: "Hashtag Treinamentos"},
-];
-
 app.get("/", (req, res) => {
-    res.json(arrResponse);
+    res.json({ message: "Api rodando"});
 });
 
 app.listen(PORT, () => console.log(`Server running at http://${hostname}:${PORT}/`));
