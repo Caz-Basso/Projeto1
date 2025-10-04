@@ -198,7 +198,7 @@ router.post('/', (req, res) => {
  * @swagger
  * /stores/{id}:
  *   put:
- *     summary: Atualiza uma loja pelo ID - Execute sem body para preencher o formulário
+ *     summary: Atualiza uma loja pelo ID 
  *     tags: [Lojas]
  *     parameters:
  *       - in: path
