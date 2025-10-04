@@ -7,7 +7,7 @@ app.use(cors());
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 
-const routes = require('./routes')
+const routes = require('./src/routes')
 
 const hostname = '127.0.0.1';
 const PORT = 3000;
