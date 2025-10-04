@@ -1,0 +1,28 @@
+{
+  "name": "projeto1",
+  "version": "1.0.0",
+  "description": "API - Central de Compras",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caz-Basso/Projeto1.git"
+  },
+  "author": "Camila Basso, Taily Vieira e Karina Borges",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caz-Basso/Projeto1/issues"
+  },
+  "homepage": "https://github.com/Caz-Basso/Projeto1#readme",
+  "keywords": [],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
