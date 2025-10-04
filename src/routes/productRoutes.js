@@ -151,6 +151,13 @@ router.get('/:id', (req, res) => {
  */
 
 router.post('/', (req, res) => {
+  const { name, description, price, stock_quantity, supplier_id, status} = req.body;
+
+  if ( !name || !description || !price || !stock_quantity || !supplier_id || !status){
+    return res.status(400).json ({ erro: "Preencha todos os campos obrigatórios!"});
+  }
+  
+  productDB = loadProduct;
   const newProduct = { id: uuidv4(), ...req.body };
   productDB.push(newProduct);
   saveProduct();
@@ -188,6 +195,7 @@ router.post('/', (req, res) => {
  */
 
 router.put('/:id', (req, res) => {
+  productDB = loadProduct;
   const index = productDB.findIndex(u => u.id === req.params.id);
   if (index === -1) return res.status(404).json({ erro: "Produto não encontrado!" });
 
@@ -217,6 +225,7 @@ router.put('/:id', (req, res) => {
  */
 
 router.delete('/:id', (req, res) => {
+  productDB = loadProduct;
   const index = productDB.findIndex(u => u.id === req.params.id);
   if (index === -1) return res.status(404).json({ erro: "Produto não encontrado!" });
 

@@ -151,6 +151,12 @@ router.get('/:id', (req, res) => {
  */
 
 router.post('/', (req, res) => {
+  const { name, contact_email, user, pwd, level, status } = req.body;
+
+  if (!name || !contact_email || !user || !pwd || !level || !status){
+    return res.status(400).json ({ erro: "Preencha todos os campos obrigatórios!"});
+  }
+
   const newUser = { id: uuidv4(), ...req.body };
   userDB.push(newUser);
   saveUser();
@@ -188,11 +194,12 @@ router.post('/', (req, res) => {
  */
 
 router.put('/:id', (req, res) => {
+  userDB = loadUser();
+  saveUser();
   const index = userDB.findIndex(u => u.id === req.params.id);
   if (index === -1) return res.status(404).json({ erro: "Usuário não encontrado!" });
 
   userDB[index] = { ...userDB[index], ...req.body }; // preserva id
-  saveUser();
   res.json(userDB[index]);
 });
 
@@ -217,6 +224,7 @@ router.put('/:id', (req, res) => {
  */
 
 router.delete('/:id', (req, res) => {
+  userDB = loadUser();
   const index = userDB.findIndex(u => u.id === req.params.id);
   if (index === -1) return res.status(404).json({ erro: "Usuário não encontrado!" });
 
