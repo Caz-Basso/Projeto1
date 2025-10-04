@@ -1,0 +1,29 @@
+[
+  {
+    "id": "8a6cc1282c5f6ec0235acd2bfa780145aa2a67fj",
+    "store_name": "Tech Mania",
+    "cnpj": "11.183.183.1234-12",
+    "address": "Estrada Geral, 02",
+    "phone_number": "48 9999 5858",
+    "contact_email": "techmania@email.com",
+    "status": "on"
+  },
+  {
+    "id": "9a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
+    "store_name": "TI Tech informatica",
+    "cnpj": "13.444.443.1234-12",
+    "address": "Criciuma-SC, 123",
+    "phone_number": "48 98888 5858",
+    "contact_email": "titech@email.com",
+    "status": "on"
+  },
+  {
+    "id": "3a0cc1282c5f6ec0235acd2bfa780145aa2a67fd",
+    "store_name": "Casa do Gamer",
+    "cnpj": "18.555.123.1234-12",
+    "address": "Treviso-SC, 00",
+    "phone_number": "48 3446 5858",
+    "contact_email": "gamer@email.com",
+    "status": "on"
+  }
+]
