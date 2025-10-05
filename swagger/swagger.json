@@ -1,0 +1,213 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Compras",
+    "version": "1.0.0",
+    "description": "API com endpoints de Campanhas e Fornecedores"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/campanhas": {
+      "get": {
+        "summary": "Listar todas as campanhas",
+        "tags": ["Campanhas"],
+        "responses": {
+          "200": {
+            "description": "Lista de campanhas retornada com sucesso"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar uma nova campanha",
+        "tags": ["Campanhas"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Campanha" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Campanha criada com sucesso"
+          }
+        }
+      }
+    },
+
+    "/campanhas/id/{id}": {
+      "get": {
+        "summary": "Buscar campanha por ID",
+        "tags": ["Campanhas"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Campanha encontrada" },
+          "404": { "description": "Campanha não encontrada" }
+        }
+      }
+    },
+
+    "/campanhas/nome/{nome}": {
+      "get": {
+        "summary": "Buscar campanhas por nome",
+        "tags": ["Campanhas"],
+        "parameters": [
+          { "name": "nome", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Lista de campanhas encontradas" },
+          "404": { "description": "Nenhuma campanha encontrada" }
+        }
+      }
+    },
+
+    "/campanhas/{id}": {
+      "put": {
+        "summary": "Atualizar campanha por ID",
+        "tags": ["Campanhas"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/Campanha" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Campanha atualizada com sucesso" },
+          "404": { "description": "Campanha não encontrada" }
+        }
+      },
+      "delete": {
+        "summary": "Excluir campanha por ID",
+        "tags": ["Campanhas"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Campanha excluída com sucesso" },
+          "404": { "description": "Campanha não encontrada" }
+        }
+      }
+    },
+
+    "/fornecedores": {
+      "get": {
+        "summary": "Listar todos os fornecedores",
+        "tags": ["Fornecedores"],
+        "responses": {
+          "200": {
+            "description": "Lista de fornecedores retornada com sucesso"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo fornecedor",
+        "tags": ["Fornecedores"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Fornecedor" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Fornecedor criado com sucesso"
+          }
+        }
+      }
+    },
+
+    "/fornecedores/id/{id}": {
+      "get": {
+        "summary": "Buscar fornecedor por ID",
+        "tags": ["Fornecedores"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Fornecedor encontrado" },
+          "404": { "description": "Fornecedor não encontrado" }
+        }
+      }
+    },
+
+    "/fornecedores/nome/{nome}": {
+      "get": {
+        "summary": "Buscar fornecedores por nome",
+        "tags": ["Fornecedores"],
+        "parameters": [
+          { "name": "nome", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Lista de fornecedores encontrados" },
+          "404": { "description": "Nenhum fornecedor encontrado" }
+        }
+      }
+    },
+
+    "/fornecedores/{id}": {
+      "put": {
+        "summary": "Atualizar fornecedor por ID",
+        "tags": ["Fornecedores"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/Fornecedor" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "Fornecedor atualizado com sucesso" },
+          "404": { "description": "Fornecedor não encontrado" }
+        }
+      },
+      "delete": {
+        "summary": "Excluir fornecedor por ID",
+        "tags": ["Fornecedores"],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Fornecedor excluído com sucesso" },
+          "404": { "description": "Fornecedor não encontrado" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Campanha": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "5utg8q7405vygbfgc7g4rtvgf792456tc7fycg945" },
+          "name": { "type": "string", "example": "Campanha de Verão" },
+          "start_date": { "type": "string", "example": "2025-01-01" },
+          "end_date": { "type": "string", "example": "2025-03-01" },
+          "discount_percentage": { "type": "number", "example": 20 }
+        }
+      },
+      "Fornecedor": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "1734563gfyfgr375t63fg745gf43746fh380ct7v" },
+          "name": { "type": "string", "example": "Fornecedor ABC" },
+          "email": { "type": "string", "example": "abc@empresa.com" },
+          "phone": { "type": "string", "example": "11999999999" }
+        }
+      }
+    }
+  }
+}

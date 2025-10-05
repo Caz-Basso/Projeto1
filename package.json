@@ -22,7 +22,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "fs": "^0.0.1-security",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^13.0.0"
   }
 }
