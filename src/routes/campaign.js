@@ -1,23 +1,15 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-// 💡 Para ES Modules
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 const router = express.Router();
-
-// 💡 CÓDIGO CORRIGIDO PARA OBTER __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// ✅ Caminho CORRETO para o JSON
 const filePath = path.join(__dirname, "campaign.json");
 
-
-// ---------------------- FUNÇÕES DE ARQUIVO ----------------------
-
-// ✅ Ler arquivo
 function readFile() {
   try {
     const data = fs.readFileSync(filePath, "utf8");
@@ -32,7 +24,6 @@ function readFile() {
   }
 }
 
-// ✅ Salvar arquivo
 function saveFile(data) {
   try {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
@@ -41,15 +32,11 @@ function saveFile(data) {
   }
 }
 
-// ---------------------- ROTAS ----------------------
-
-// ✅ GET - Listar todas as campanhas
 router.get("/", (req, res) => {
   const data = readFile();
   res.json(data);
 });
 
-// ✅ GET - Buscar campanha por ID
 router.get("/id/:id", (req, res) => {
   const data = readFile();
   const item = data.find(c => c.id == req.params.id);
@@ -57,7 +44,6 @@ router.get("/id/:id", (req, res) => {
   res.json(item);
 });
 
-// ✅ GET - Buscar campanha por nome
 router.get("/nome/:nome", (req, res) => {
   const data = readFile();
   const results = data.filter(c =>
@@ -66,7 +52,6 @@ router.get("/nome/:nome", (req, res) => {
   res.json(results);
 });
 
-// ✅ POST - Criar nova campanha
 router.post("/", (req, res) => {
   const data = readFile();
   const nova = { id: Date.now().toString(), ...req.body };
@@ -75,7 +60,6 @@ router.post("/", (req, res) => {
   res.status(201).json(nova);
 });
 
-// ✅ PUT - Atualizar campanha
 router.put("/:id", (req, res) => {
   const data = readFile();
   const index = data.findIndex(c => c.id == req.params.id);
@@ -86,7 +70,6 @@ router.put("/:id", (req, res) => {
   res.json(data[index]);
 });
 
-// ✅ DELETE - Deletar campanha
 router.delete("/:id", (req, res) => {
   const data = readFile();
   const novoArray = data.filter(c => c.id != req.params.id);
@@ -98,7 +81,6 @@ router.delete("/:id", (req, res) => {
   res.json({ message: "Campanha removida com sucesso" });
 });
 
-// ✅ GET - Buscar por nome (rota alternativa)
 router.get("/search/:name", (req, res) => {
   const { name } = req.params;
   const campaigns = readFile();
@@ -110,7 +92,6 @@ router.get("/search/:name", (req, res) => {
   if (results.length === 0) {
     return res.status(404).json({ message: "Nenhuma campanha encontrada com esse nome." });
   }
-
   res.json(results);
 });
 

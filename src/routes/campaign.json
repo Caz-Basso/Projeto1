@@ -16,22 +16,6 @@
     "discount_percentage": 30
   },
   {
-    "id": "2d6bc4567a8e9f01234ab567cdef8901234567cd",
-    "supplier_id": "4c7df8901a2b3c456de7890f12345678abcd1234",
-    "name": "Volta às Aulas",
-    "start_date": "2025-01-05 09:00:00",
-    "end_date": "2025-01-31 23:59:59",
-    "discount_percentage": 15
-  },
-  {
-    "id": "3e9bd5678f9012345ab67890cdef123456789abc",
-    "supplier_id": "5d8ef9012b3c4567de8901f23456789abcd12345",
-    "name": "Campanha de Inverno",
-    "start_date": "2025-06-01 00:00:00",
-    "end_date": "2025-06-30 23:59:59",
-    "discount_percentage": 25
-  },
-  {
     "id": "4fabc6789012de3456f78901cdef234567890abc",
     "supplier_id": "6e9f0123456ab7890cd123456ef789012345abcd",
     "name": "Semana do Consumidor",
@@ -46,35 +30,5 @@
     "start_date": "2025-05-01 00:00:00",
     "end_date": "2025-05-12 23:59:59",
     "discount_percentage": 18
-  },
-  {
-    "id": "6bcd2345678901def234567890abc123456789de",
-    "supplier_id": "8abc234567890def1234567890abc123456789de",
-    "name": "Aniversário da Loja",
-    "start_date": "2025-09-01 08:00:00",
-    "end_date": "2025-09-10 23:59:59",
-    "discount_percentage": 40
-  },
-  {
-    "id": "7cde3456789012ef34567890abc1234567890ef1",
-    "supplier_id": "9bcd3456789012ef34567890abc1234567890ef1",
-    "name": "Liquidação de Estoque",
-    "start_date": "2025-08-01 00:00:00",
-    "end_date": "2025-08-15 23:59:59",
-    "discount_percentage": 50
-  },
-  {
-    "id": "1",
-    "name": "Dia das Crianças",
-    "start_date": "2025-10-06",
-    "end_date": "2025-10-10",
-    "discount_percentage": 20
-  },
-  {
-    "id": "7a8bv3694e5f6hi7890abc12def34567abcd8901",
-    "name": "Dia das Crianças",
-    "start_date": "2025-10-06",
-    "end_date": "2025-10-10",
-    "discount_percentage": 20
   }
 ]

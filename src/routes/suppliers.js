@@ -6,16 +6,11 @@ import { dirname } from "path";
 
 const router = express.Router();
 
-// ✅ Corrige __dirname para ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// ✅ Caminho correto para o arquivo suppliers.json
 const filePath = path.join(__dirname, "..", "suppliers.json");
 
-// ---------------------- FUNÇÕES DE ARQUIVO ----------------------
-
-// Ler arquivo
 function readFile() {
   try {
     const data = fs.readFileSync(filePath, "utf8");
@@ -30,7 +25,6 @@ function readFile() {
   }
 }
 
-// Salvar arquivo
 function saveFile(data) {
   try {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
@@ -39,15 +33,11 @@ function saveFile(data) {
   }
 }
 
-// ---------------------- ROTAS ----------------------
-
-// ✅ GET - Listar todos os fornecedores
 router.get("/", (req, res) => {
   const data = readFile();
   res.json(data);
 });
 
-// ✅ GET - Buscar fornecedor por ID
 router.get("/id/:id", (req, res) => {
   const data = readFile();
   const item = data.find(c => c.id == req.params.id);
@@ -55,7 +45,6 @@ router.get("/id/:id", (req, res) => {
   res.json(item);
 });
 
-// ✅ GET - Buscar fornecedor por nome
 router.get("/nome/:nome", (req, res) => {
   const data = readFile();
   const results = data.filter(c =>
@@ -64,7 +53,6 @@ router.get("/nome/:nome", (req, res) => {
   res.json(results);
 });
 
-// ✅ POST - Criar novo fornecedor
 router.post("/", (req, res) => {
   const data = readFile();
   const novo = { id: Date.now().toString(), ...req.body };
@@ -73,7 +61,6 @@ router.post("/", (req, res) => {
   res.status(201).json(novo);
 });
 
-// ✅ PUT - Atualizar fornecedor
 router.put("/:id", (req, res) => {
   const data = readFile();
   const index = data.findIndex(c => c.id == req.params.id);
@@ -84,7 +71,6 @@ router.put("/:id", (req, res) => {
   res.json(data[index]);
 });
 
-// ✅ DELETE - Deletar fornecedor
 router.delete("/:id", (req, res) => {
   const data = readFile();
   const novoArray = data.filter(c => c.id != req.params.id);
