@@ -234,4 +234,52 @@ router.delete('/:id', (req, res) => {
   res.json(deleted[0]);
 });
 
+/**
+ * @swagger
+ * /products/nome/{name}:
+ *   get:
+ *     summary: Retorna um produtos pelo nome
+ *     tags: [Produtos]
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nome do produto
+ *     responses:
+ *       200:
+ *         description: Lista de produtos encontrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *             type: array
+ *             items:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Produto não encontrado
+ */
+
+router.get('/nome/:name', (req, res) => {
+  const termo = req.params.name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, ""); // remove acentos
+
+  const produtosEncontrados = productDB.filter(p =>
+    p.name &&
+    p.name
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .includes(termo)
+  );
+
+  if (produtosEncontrados.length === 0)
+    return res.status(404).json({ erro: "Produto não encontrado!" });
+
+  res.json(produtosEncontrados);
+});
+
+
 module.exports = router;

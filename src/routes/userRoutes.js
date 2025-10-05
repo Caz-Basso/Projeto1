@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
+const swaggerJSDoc = require('swagger-jsdoc');
 
 let userDB = loadUser();
 
@@ -232,5 +233,46 @@ router.delete('/:id', (req, res) => {
   saveUser();
   res.json(deleted[0]);
 });
+
+
+/**
+ * @swagger
+ * /users/nome/{name}:
+ *   get:
+ *     summary: Busca um usuário pelo nome
+ *     tags: [Usuarios]
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nome do usuário
+ *     responses:
+ *       200:
+ *         description: Lista de usuários encontrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *             type: array
+ *             items:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: Usuário não encontrado
+ */
+
+router.get('/nome/:name', (req, res) => {
+  const termo = req.params.name.toLowerCase();
+  const user = userDB.filter(u =>
+    u.name && u.name.toLowerCase().includes(termo)
+  );
+
+  if (user.length === 0)
+    return res.status(404).json({ erro: "Usuário não encontrado!" });
+
+  res.json(user);
+});
+
+
 
 module.exports = router;

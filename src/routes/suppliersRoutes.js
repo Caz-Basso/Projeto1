@@ -110,6 +110,31 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  *         description: Fornecedor não encontrado
  */
 
+
+/**
+ * @swagger
+ * /suppliers/nome/{supplier_name}:
+ *   get:
+ *     summary: Buscar fornecedor por nome
+ *     tags: [Fornecedores]
+ *     parameters:
+ *       - in: path
+ *         name: supplier_name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nome do fornecedor
+ *     responses:
+ *       200:
+ *         description: Fornecedor encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Supplier'
+ *       404:
+ *         description: Fornecedor não encontrado
+ */
+
 /**
  * @swagger
  * /suppliers/{id}:
@@ -179,7 +204,7 @@ router.get("/", (req, res) => {
   res.json(data);
 });
 
-router.get("/id/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const data = readFile();
   const item = data.find(c => c.id == req.params.id);
   if (!item) return res.status(404).json({ message: "Fornecedor não encontrado" });
@@ -189,7 +214,7 @@ router.get("/id/:id", (req, res) => {
 router.get("/nome/:nome", (req, res) => {
   const data = readFile();
   const results = data.filter(c =>
-    c.name.toLowerCase().includes(req.params.nome.toLowerCase())
+    c.supplier_name.toLowerCase().includes(req.params.nome.toLowerCase())
   );
   res.json(results);
 });
