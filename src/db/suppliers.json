@@ -1,13 +1,5 @@
 [
   {
-    "id": "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
-    "supplier_name": "Judite Heeler",
-    "supplier_category": "Informática, Segurança",
-    "contact_email": "j.heeler@gmail.com",
-    "phone_number": "48 9696 5858",
-    "status": "on"
-  },
-  {
     "id": "6e9f0123456ab7890cd123456ef789012345abcd",
     "supplier_name": "Fashion Store",
     "supplier_category": "Vestuário, Acessórios",
@@ -20,7 +12,7 @@
     "supplier_name": "Flor & Arte",
     "supplier_category": "Decoração, Presentes",
     "contact_email": "florearte@gmail.com",
-    "phone_number": "47 9123 4567",
+    "phone_number": "47 99123 4567",
     "status": "off"
   },
   {
@@ -29,6 +21,14 @@
     "supplier_category": "Eletrodomésticos",
     "contact_email": "suporte@megaeletro.com",
     "phone_number": "85 9987 6655",
+    "status": "on"
+  },
+  {
+    "id": "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
+    "supplier_name": "Judite Heeler",
+    "supplier_category": "Informática, Segurança",
+    "contact_email": "j.heeler@gmail.com",
+    "phone_number": "48 9696 5858",
     "status": "on"
   }
 ]

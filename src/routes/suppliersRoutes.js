@@ -179,7 +179,7 @@ router.get("/", (req, res) => {
   res.json(data);
 });
 
-router.get("/id/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const data = readFile();
   const item = data.find(c => c.id == req.params.id);
   if (!item) return res.status(404).json({ message: "Fornecedor não encontrado" });
