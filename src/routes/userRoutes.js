@@ -74,7 +74,7 @@ function saveUser() {
  * @swagger
  * tags:
  *   name: Usuarios
- *   description: API de Cadastro de Usuário
+ *   description: API de Cadastro de Usuário (Por Camila Basso)
  */
 
 /**

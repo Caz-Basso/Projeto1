@@ -8,7 +8,7 @@ const filePath = path.join(__dirname, "../db/campaign.json");
  * @swagger
  * components:
  *   schemas:
- *     Campanha:
+ *     Campaing:
  *       type: object
  *       required:
  *         - id
@@ -49,12 +49,12 @@ const filePath = path.join(__dirname, "../db/campaign.json");
  * @swagger
  * tags:
  *   name: Campanhas
- *   description: API de gerenciamento de campanhas promocionais
+ *   description: API de gerenciamento de Campanhas (Por Taily Vieira)
  */
 
 /**
  * @swagger
- * /campanhas:
+ * /campaings:
  *   get:
  *     summary: Listar todas as campanhas
  *     tags: [Campanhas]
@@ -66,12 +66,12 @@ const filePath = path.join(__dirname, "../db/campaign.json");
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Campanha'
+ *                 $ref: '#/components/schemas/Campaing'
  */
 
 /**
  * @swagger
- * /campanhas:
+ * /campaings:
  *   post:
  *     summary: Criar uma nova campanha
  *     tags: [Campanhas]
@@ -80,7 +80,7 @@ const filePath = path.join(__dirname, "../db/campaign.json");
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Campanha'
+ *             $ref: '#/components/schemas/Campaing'
  *     responses:
  *       201:
  *         description: Campanha criada com sucesso
@@ -88,7 +88,7 @@ const filePath = path.join(__dirname, "../db/campaign.json");
 
 /**
  * @swagger
- * /campanhas/{id}:
+ * /campaings/{id}:
  *   get:
  *     summary: Buscar campanha por ID
  *     tags: [Campanhas]
@@ -105,14 +105,14 @@ const filePath = path.join(__dirname, "../db/campaign.json");
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Campanha'
+ *               $ref: '#/components/schemas/Campaing'
  *       404:
  *         description: Campanha não encontrada
  */
 
 /**
  * @swagger
- * /campanhas/{id}:
+ * /campaings/{id}:
  *   put:
  *     summary: Atualizar campanha por ID
  *     tags: [Campanhas]
@@ -128,7 +128,7 @@ const filePath = path.join(__dirname, "../db/campaign.json");
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Campanha'
+ *             $ref: '#/components/schemas/Campaing'
  *     responses:
  *       200:
  *         description: Campanha atualizada com sucesso
@@ -136,7 +136,7 @@ const filePath = path.join(__dirname, "../db/campaign.json");
 
 /**
  * @swagger
- * /campanhas/{id}:
+ * /campaings/{id}:
  *   delete:
  *     summary: Excluir campanha por ID
  *     tags: [Campanhas]

@@ -8,7 +8,7 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  * @swagger
  * components:
  *   schemas:
- *     Fornecedor:
+ *     Supplier:
  *       type: object
  *       required:
  *         - id
@@ -49,12 +49,12 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  * @swagger
  * tags:
  *   name: Fornecedores
- *   description: API de gerenciamento de fornecedores
+ *   description: API de gerenciamento de fornecedores (Por Taily Vieira)
  */
 
 /**
  * @swagger
- * /fornecedores:
+ * /suppliers:
  *   get:
  *     summary: Listar todos os fornecedores
  *     tags: [Fornecedores]
@@ -66,12 +66,12 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Fornecedor'
+ *                 $ref: '#/components/schemas/Supplier'
  */
 
 /**
  * @swagger
- * /fornecedores:
+ * /suppliers:
  *   post:
  *     summary: Criar um novo fornecedor
  *     tags: [Fornecedores]
@@ -80,7 +80,7 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Fornecedor'
+ *             $ref: '#/components/schemas/Supplier'
  *     responses:
  *       201:
  *         description: Fornecedor criado com sucesso
@@ -88,7 +88,7 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
 
 /**
  * @swagger
- * /fornecedores/{id}:
+ * /suppliers/{id}:
  *   get:
  *     summary: Buscar fornecedor por ID
  *     tags: [Fornecedores]
@@ -105,14 +105,14 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Fornecedor'
+ *               $ref: '#/components/schemas/Supplier'
  *       404:
  *         description: Fornecedor não encontrado
  */
 
 /**
  * @swagger
- * /fornecedores/{id}:
+ * /suppliers/{id}:
  *   put:
  *     summary: Atualizar fornecedor por ID
  *     tags: [Fornecedores]
@@ -128,7 +128,7 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Fornecedor'
+ *             $ref: '#/components/schemas/Supplier'
  *     responses:
  *       200:
  *         description: Fornecedor atualizado com sucesso
@@ -136,7 +136,7 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
 
 /**
  * @swagger
- * /fornecedores/{id}:
+ * /suppliers/{id}:
  *   delete:
  *     summary: Excluir fornecedor por ID
  *     tags: [Fornecedores]
@@ -151,7 +151,6 @@ const filePath = path.join(__dirname, "../db/suppliers.json");
  *       204:
  *         description: Fornecedor excluído com sucesso
  */
-
 
 function readFile() {
   try {

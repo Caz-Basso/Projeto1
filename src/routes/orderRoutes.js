@@ -106,7 +106,7 @@ function formatDate(dateString) {
  * @swagger
  * tags:
  *   name: Pedidos
- *   description: API de Pedidos
+ *   description: API de Pedidos (Por Karina Borges)
  */
 
 // GET all orders

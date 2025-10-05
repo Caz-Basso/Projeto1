@@ -65,7 +65,7 @@ function saveStore() {
  * @swagger
  * tags:
  *   name: Lojas
- *   description: API de Cadastro de Lojas
+ *   description: API de Cadastro de Lojas (Por Karina Borges)
  */
 
 // GET all stores

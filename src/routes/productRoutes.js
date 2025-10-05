@@ -74,7 +74,7 @@ function saveProduct() {
  * @swagger
  * tags:
  *   name: Produtos
- *   description: API de Cadastro de Produtos
+ *   description: API de Cadastro de Produtos (Por Camila Basso)
  */
 
 /**
