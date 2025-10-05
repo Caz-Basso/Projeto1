@@ -1,14 +1,156 @@
-import express from "express";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
+const express = require("express");
 const router = express.Router();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+const fs = require("fs");
+const path = require("path");
 const filePath = path.join(__dirname, "../db/campaign.json");
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Campanha:
+ *       type: object
+ *       required:
+ *         - id
+ *         - supplier_id
+ *         - name
+ *         - start_date
+ *         - end_date
+ *         - discount_percentage
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: Identificador único da campanha
+ *         supplier_id:
+ *           type: string
+ *           description: ID do fornecedor vinculado à campanha
+ *         name:
+ *           type: string
+ *           description: Nome da campanha promocional
+ *         start_date:
+ *           type: string
+ *           description: Data e hora de início da campanha (YYYY-MM-DD HH:MM:SS)
+ *         end_date:
+ *           type: string
+ *           description: Data e hora de término da campanha (YYYY-MM-DD HH:MM:SS)
+ *         discount_percentage:
+ *           type: number
+ *           description: Percentual de desconto aplicado na campanha
+ *       example:
+ *         id: "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd"
+ *         supplier_id: "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd"
+ *         name: "Black Friday"
+ *         start_date: "2023-08-15 16:00:00"
+ *         end_date: "2023-08-20 23:59:59"
+ *         discount_percentage: 20
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Campanhas
+ *   description: API de gerenciamento de campanhas promocionais
+ */
+
+/**
+ * @swagger
+ * /campanhas:
+ *   get:
+ *     summary: Listar todas as campanhas
+ *     tags: [Campanhas]
+ *     responses:
+ *       200:
+ *         description: Lista de campanhas retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Campanha'
+ */
+
+/**
+ * @swagger
+ * /campanhas:
+ *   post:
+ *     summary: Criar uma nova campanha
+ *     tags: [Campanhas]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Campanha'
+ *     responses:
+ *       201:
+ *         description: Campanha criada com sucesso
+ */
+
+/**
+ * @swagger
+ * /campanhas/{id}:
+ *   get:
+ *     summary: Buscar campanha por ID
+ *     tags: [Campanhas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID da campanha
+ *     responses:
+ *       200:
+ *         description: Campanha encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Campanha'
+ *       404:
+ *         description: Campanha não encontrada
+ */
+
+/**
+ * @swagger
+ * /campanhas/{id}:
+ *   put:
+ *     summary: Atualizar campanha por ID
+ *     tags: [Campanhas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID da campanha
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Campanha'
+ *     responses:
+ *       200:
+ *         description: Campanha atualizada com sucesso
+ */
+
+/**
+ * @swagger
+ * /campanhas/{id}:
+ *   delete:
+ *     summary: Excluir campanha por ID
+ *     tags: [Campanhas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID da campanha
+ *     responses:
+ *       204:
+ *         description: Campanha excluída com sucesso
+ */
 
 function readFile() {
   try {
@@ -81,4 +223,4 @@ router.delete("/:id", (req, res) => {
   res.json({ message: "Campanha removida com sucesso" });
 });
 
-export default router;
+module.exports = router;
