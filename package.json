@@ -2,7 +2,11 @@
   "name": "projeto1",
   "version": "1.0.0",
   "description": "API - Central de Compras",
+<<<<<<< HEAD
   "type": "commonjs",
+=======
+  "type": "module",
+>>>>>>> campaign
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,6 +26,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+<<<<<<< HEAD
+=======
+    "fs": "^0.0.1-security",
+>>>>>>> campaign
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^13.0.0"

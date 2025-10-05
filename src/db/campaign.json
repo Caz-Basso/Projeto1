@@ -1,0 +1,34 @@
+[
+  {
+    "id": "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
+    "supplier_id": "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
+    "name": "Black Friday",
+    "start_date": "2023-08-15 16:00:00",
+    "end_date": "2023-08-20 23:59:59",
+    "discount_percentage": 20
+  },
+  {
+    "id": "9f8ba1234e5f6dc7890abc12def34567abcd8901",
+    "supplier_id": "1b3cd5678e9f0123456ab789cdef123456789abc",
+    "name": "Natal 2025",
+    "start_date": "2025-12-01 08:00:00",
+    "end_date": "2025-12-31 23:59:59",
+    "discount_percentage": 30
+  },
+  {
+    "id": "4fabc6789012de3456f78901cdef234567890abc",
+    "supplier_id": "6e9f0123456ab7890cd123456ef789012345abcd",
+    "name": "Semana do Consumidor",
+    "start_date": "2025-03-10 00:00:00",
+    "end_date": "2025-03-17 23:59:59",
+    "discount_percentage": 35
+  },
+  {
+    "id": "5abc9012de3456f78901cdef234567890abcdef0",
+    "supplier_id": "7fab1234567890cdef1234567890abcd123456ef",
+    "name": "Dia das Mães",
+    "start_date": "2025-05-01 00:00:00",
+    "end_date": "2025-05-12 23:59:59",
+    "discount_percentage": 18
+  }
+]
