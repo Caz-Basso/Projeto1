@@ -9,7 +9,7 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const filePath = path.join(__dirname, "..", "suppliers.json");
+const filePath = path.join(__dirname, "../db/suppliers.json");
 
 function readFile() {
   try {

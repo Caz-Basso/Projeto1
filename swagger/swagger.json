@@ -39,8 +39,7 @@
         }
       }
     },
-
-    "/campanhas/id/{id}": {
+    "/campanhas/{id}": {
       "get": {
         "summary": "Buscar campanha por ID",
         "tags": ["Campanhas"],
@@ -51,24 +50,7 @@
           "200": { "description": "Campanha encontrada" },
           "404": { "description": "Campanha não encontrada" }
         }
-      }
-    },
-
-    "/campanhas/nome/{nome}": {
-      "get": {
-        "summary": "Buscar campanhas por nome",
-        "tags": ["Campanhas"],
-        "parameters": [
-          { "name": "nome", "in": "path", "required": true, "schema": { "type": "string" } }
-        ],
-        "responses": {
-          "200": { "description": "Lista de campanhas encontradas" },
-          "404": { "description": "Nenhuma campanha encontrada" }
-        }
-      }
-    },
-
-    "/campanhas/{id}": {
+      },
       "put": {
         "summary": "Atualizar campanha por ID",
         "tags": ["Campanhas"],
@@ -82,8 +64,7 @@
           }
         },
         "responses": {
-          "200": { "description": "Campanha atualizada com sucesso" },
-          "404": { "description": "Campanha não encontrada" }
+          "200": { "description": "Campanha atualizada com sucesso" }
         }
       },
       "delete": {
@@ -93,8 +74,7 @@
           { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
         ],
         "responses": {
-          "200": { "description": "Campanha excluída com sucesso" },
-          "404": { "description": "Campanha não encontrada" }
+          "204": { "description": "Campanha excluída com sucesso" }
         }
       }
     },
@@ -127,8 +107,7 @@
         }
       }
     },
-
-    "/fornecedores/id/{id}": {
+    "/fornecedores/{id}": {
       "get": {
         "summary": "Buscar fornecedor por ID",
         "tags": ["Fornecedores"],
@@ -139,24 +118,7 @@
           "200": { "description": "Fornecedor encontrado" },
           "404": { "description": "Fornecedor não encontrado" }
         }
-      }
-    },
-
-    "/fornecedores/nome/{nome}": {
-      "get": {
-        "summary": "Buscar fornecedores por nome",
-        "tags": ["Fornecedores"],
-        "parameters": [
-          { "name": "nome", "in": "path", "required": true, "schema": { "type": "string" } }
-        ],
-        "responses": {
-          "200": { "description": "Lista de fornecedores encontrados" },
-          "404": { "description": "Nenhum fornecedor encontrado" }
-        }
-      }
-    },
-
-    "/fornecedores/{id}": {
+      },
       "put": {
         "summary": "Atualizar fornecedor por ID",
         "tags": ["Fornecedores"],
@@ -170,8 +132,7 @@
           }
         },
         "responses": {
-          "200": { "description": "Fornecedor atualizado com sucesso" },
-          "404": { "description": "Fornecedor não encontrado" }
+          "200": { "description": "Fornecedor atualizado com sucesso" }
         }
       },
       "delete": {
@@ -181,8 +142,7 @@
           { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
         ],
         "responses": {
-          "200": { "description": "Fornecedor excluído com sucesso" },
-          "404": { "description": "Fornecedor não encontrado" }
+          "204": { "description": "Fornecedor excluído com sucesso" }
         }
       }
     }
@@ -192,7 +152,7 @@
       "Campanha": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "5utg8q7405vygbfgc7g4rtvgf792456tc7fycg945" },
+          "id": { "type": "string", "example": "1" },
           "name": { "type": "string", "example": "Campanha de Verão" },
           "start_date": { "type": "string", "example": "2025-01-01" },
           "end_date": { "type": "string", "example": "2025-03-01" },
@@ -202,7 +162,7 @@
       "Fornecedor": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "1734563gfyfgr375t63fg745gf43746fh380ct7v" },
+          "id": { "type": "string", "example": "1" },
           "name": { "type": "string", "example": "Fornecedor ABC" },
           "email": { "type": "string", "example": "abc@empresa.com" },
           "phone": { "type": "string", "example": "11999999999" }

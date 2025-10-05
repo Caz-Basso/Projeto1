@@ -1,52 +1,22 @@
-const express = require('express')
-const cors = require("cors");
-const swaggerUI = require("swagger-ui-express");
-const swaggerJsDoc = require("swagger-jsdoc");
-
-const routes = require('./routes/index')
+import express from "express";
+import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+import campaignRoutes from "./routes/campaignRoutes.js";
+import suppliersRoutes from "./routes/suppliersRoutes.js";
 
 const app = express();
-const hostname = '127.0.0.1';
-const PORT = 3000;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-const options ={
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "API Exemplo",
-            version: "1.0.0",
-            description: `API para projeto 1.
-            
-            ### TD 01
-            Disciplina: DAII 2025.02 Turma 01
-            Equipe: Camila, Taily, Karina`,
-            license:{
-                name: 'Licenciado para DAII',
-            },
-            contact: {
-                name: 'André F Ruaro'
-            },
-                },
-                servers: [
-                    {
-                        url: "http://localhost:3000/api/",
-                        description: 'Development server',
-                    },
-            ],
-    },
-    apis: ["./src/routes/*.js"],
-};
+const swaggerDocument = JSON.parse(fs.readFileSync("./swagger/swagger.json", "utf8"));
 
-const specs = swaggerJsDoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use('/api', routes)
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/campanhas", campaignRoutes);
+app.use("/fornecedores", suppliersRoutes);
 
-app.get("/", (req, res) => {
-    res.json({ message: "Api rodando"});
-});
-
-app.listen(PORT, () => console.log(`Server running at http://${hostname}:${PORT}/`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Servidor rodando em http://localhost:${PORT}`));
+console.log(`📘 Documentação disponível em http://localhost:${PORT}/api-docs`);

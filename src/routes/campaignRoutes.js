@@ -8,7 +8,7 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const filePath = path.join(__dirname, "campaign.json");
+const filePath = path.join(__dirname, "../db/campaign.json");
 
 function readFile() {
   try {
@@ -79,20 +79,6 @@ router.delete("/:id", (req, res) => {
 
   saveFile(novoArray);
   res.json({ message: "Campanha removida com sucesso" });
-});
-
-router.get("/search/:name", (req, res) => {
-  const { name } = req.params;
-  const campaigns = readFile();
-
-  const results = campaigns.filter(c =>
-    c.name.toLowerCase().includes(name.toLowerCase())
-  );
-
-  if (results.length === 0) {
-    return res.status(404).json({ message: "Nenhuma campanha encontrada com esse nome." });
-  }
-  res.json(results);
 });
 
 export default router;
