@@ -112,6 +112,30 @@ const filePath = path.join(__dirname, "../db/campaign.json");
 
 /**
  * @swagger
+ * /campaigns/nome/{nome}:
+ *   get:
+ *     summary: Buscar campanha por nome
+ *     tags: [Campanhas]
+ *     parameters:
+ *       - in: path
+ *         name: nome
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nome da campanha
+ *     responses:
+ *       200:
+ *         description: Campanha encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Campaign'
+ *       404:
+ *         description: Campanha não encontrada
+ */
+
+/**
+ * @swagger
  * /campaigns/{id}:
  *   put:
  *     summary: Atualizar campanha por ID

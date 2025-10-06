@@ -1,4 +1,3 @@
-
 [
   {
     "id": "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
@@ -7,6 +6,15 @@
     "price": "200.00",
     "stock_quantity": "8",
     "supplier_id": "7a6cc1282c5f6ec0235acd2bfa780145aa2a67fd",
+    "status": "on"
+  },
+  {
+    "id": "afr0b6d0-a69b-4938-b116-f2e8e0d08542",
+    "name": "Martelo",
+    "description": "Martelo com cabo de madeira",
+    "price": 20,
+    "stock_quantity": 72,
+    "supplier_id": "7a6cc1282c5f6ec0235acd2bfa780145aaskem5n",
     "status": "on"
   }
 ]
